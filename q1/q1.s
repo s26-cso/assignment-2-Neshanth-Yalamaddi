@@ -11,7 +11,7 @@ create_node:
     sd a0,0(sp)
 
     # creates node 
-    li a0,12
+    li a0,24
     call malloc
 
     # node->val=val
@@ -19,8 +19,8 @@ create_node:
     sw t0,0(a0)
 
     # node->left=NULL, node->right=NULL
-    sd zero,4(a0)
     sd zero,8(a0)
+    sd zero,16(a0)
 
     #return
     ld ra,8(sp)
@@ -37,7 +37,7 @@ insert:
 
 insert_left:
     # t1 = root->left
-    ld t1,4(a0)
+    ld t1,8(a0)
     mv a0,t1        # a0 = root->left
     call insert
     sd a0,8(sp)
@@ -45,7 +45,7 @@ insert_left:
 
 insert_right:
     # t1 = root->right
-    ld t1,8(a0)
+    ld t1,16(a0)
     mv a0,t1        # a0 = root->right
     call insert
     sd a0,8(sp)
@@ -64,11 +64,11 @@ get:
     blt a1,t0, get_left
 
 get_right:
-    ld a0,8(a0)
+    ld a0,16(a0)
     j get
 
 get_left:
-    ld a0,4(a0)
+    ld a0,8(a0)
     j get
 
 get_found:
@@ -85,12 +85,12 @@ loop_atmost:
     beq a1,zero ,done_atmost
     lw t0,0(a1)
     ble t0,a0, update_best
-    lw a1,4(a1)
+    lw a1,8(a1)
     j loop_atmost
 
 update_best:
     mv t2,t0
-    ld a1, 8(a1)
+    ld a1, 16(a1)
     j loop_atmost
 
 done_atmost:
