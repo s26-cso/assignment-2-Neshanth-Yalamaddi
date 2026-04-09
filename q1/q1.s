@@ -36,6 +36,7 @@ insert:
     lw t0,0(a0)
     blt a1,t0, insert_left
     bgt a1,t0, insert_right
+    ld a0,0(sp)
     ld ra,8(sp)
     addi sp,sp,16
     ret
