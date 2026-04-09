@@ -28,11 +28,16 @@ make_node:
     ret
 
 insert:
+    addi sp,sp,-16
+    sd ra,8(sp)
+    sd a0,0(sp)
     beq a0,zero, insert_create
     # root->val
     lw t0,0(a0)
     blt a1,t0, insert_left
     bgt a1,t0, insert_right
+    ld ra,8(sp)
+    addi sp,sp,16
     ret
 
 insert_left:
@@ -58,6 +63,8 @@ insert_right:
 insert_create:
     mv a0,a1
     call make_node
+    ld ra,8(sp)
+    addi sp,sp,16
     ret
 
 get:
