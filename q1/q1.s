@@ -36,19 +36,23 @@ insert:
     ret
 
 insert_left:
+    mv t2,a0
     # t1 = root->left
     ld t1,8(a0)
     mv a0,t1        # a0 = root->left
     call insert
-    sd a0,8(sp)
+    sd a0,8(t2)
+    mv a0,t2
     ret
 
 insert_right:
+    mv t2,a0
     # t1 = root->right
     ld t1,16(a0)
     mv a0,t1        # a0 = root->right
     call insert
-    sd a0,8(sp)
+    sd a0,16(t2)
+    mv a0,t2
     ret
 
 insert_create:
@@ -85,7 +89,7 @@ loop_atmost:
     beq a1,zero ,done_atmost
     lw t0,0(a1)
     ble t0,a0, update_best
-    lw a1,8(a1)
+    ld a1,8(a1)
     j loop_atmost
 
 update_best:
