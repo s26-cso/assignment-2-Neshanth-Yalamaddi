@@ -2,7 +2,7 @@
 .globl make_node
 .globl insert
 .globl get
-.globl get_at_most
+.globl getAtMost
 
 make_node:
     #stack pointer
@@ -78,7 +78,7 @@ get_NULL:
     mv a0,zero
     ret
 
-get_at_most:
+getAtMost:
     li t2,-1
 
 loop_atmost:
