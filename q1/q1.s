@@ -1,10 +1,10 @@
 .text
-.globl create_node
+.globl make_node
 .globl insert
 .globl get
 .globl get_at_most
 
-create_node:
+make_node:
     #stack pointer
     addi sp,sp,-16
     sd ra,8(sp)
@@ -53,7 +53,7 @@ insert_right:
 
 insert_create:
     mv a0,a1
-    call create_node
+    call make_node
     ret
 
 get:
