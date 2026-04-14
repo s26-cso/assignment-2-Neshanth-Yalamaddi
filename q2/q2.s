@@ -114,8 +114,6 @@ print_result:
     li s6, 0
 
 print_loop:
-    bge s6, s1, print_newline
-
     slli t0, s6, 2
     add t0, s3, t0
     lw a0, 0(t0)
@@ -123,13 +121,14 @@ print_loop:
     li a7, 1                            # print integer
     ecall
 
+    addi s6, s6, 1
+
+    bge s6, s1, print_newline
     la a0, space
     li a7, 4                            # print space
     ecall
 
-    addi s6, s6, 1
     j print_loop
-
 
 print_newline:
     la a0, newline                      # ensure newline at end
