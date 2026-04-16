@@ -67,7 +67,7 @@ loop:
 palindrome:
     li a7,64
     li a0,1
-    li a1,Yes
+    la a1,Yes
     li a2,4
     ecall
     j exit
@@ -75,7 +75,7 @@ palindrome:
 not_palindrome:
     li a7,64
     li a0,1
-    li a1,No
+    la a1,No
     li a2,3
     ecall
 

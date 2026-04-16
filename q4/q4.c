@@ -10,7 +10,7 @@ int main(){
         char libname[20];
         snprintf(libname,sizeof(libname),"lib%.so",op);
         void* handle = dlopen(libname,RTLD_LAZY);
-        int *(func)(int, int);
+        int (*func)(int, int);
         *(void **) (&func) = dlsym(handle, op);
         int result = func(a, b);
         printf("%d\n", result);
