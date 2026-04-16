@@ -8,7 +8,7 @@ int main(){
     int a,b;
     while(scanf("%5s %d %d",op,&a,&b)==3){
         char libname[20];
-        snprintf(libname,sizeof(libname),"./lib%.so",op);
+        snprintf(libname,sizeof(libname),"./lib%s.so",op);
         void* handle = dlopen(libname,RTLD_LAZY);
         int (*func)(int, int);
         *(void **) (&func) = dlsym(handle, op);
